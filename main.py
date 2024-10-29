@@ -187,6 +187,10 @@ def generate_response(instructions, content):
 
     return return_val
 
+@app.route('/helloworld', methods=['GET'])
+def helloworld():
+    return 'hello world'
+
 @app.route('/generate', methods=['POST'])
 def generate():
     try:
