@@ -3,9 +3,12 @@ import openai
 from cltk import NLP
 import string
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 # from cltk.lemmatize.grc import DictLemmatizer
 
 app = Flask(__name__)
+CORS(app)
+
 
 API_KEY = "sk-proj-W6O9scSc55O6gOradF7DT3BlbkFJZCjatA5iGABY2ITZc0gj"
 
@@ -215,8 +218,9 @@ def generate():
 #     print(generate_response(instructions=instructions, content=content))
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    # app.run(debug=True)
+    # app.run(host="0.0.0.0", port=5000)
+    app.run()
 
 
 
