@@ -4,4 +4,3 @@ Flask-Cors==5.0.0
 gunicorn==23.0.0
 openai==1.52.2
 virtualenv==20.26.3
-nltk==3.8.1
