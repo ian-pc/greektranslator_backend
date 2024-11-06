@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-API_KEY = "sk-proj-W6O9scSc55O6gOradF7DT3BlbkFJZCjatA5iGABY2ITZc0gj"
+API_KEY = "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"
 
 nlp = NLP(language="grc", suppress_banner=True)
 
@@ -54,7 +54,7 @@ def makesense(word, raw_translation):
     assistant = client2.beta.assistants.create(
         name="Greek Translation Interpreter",
         instructions=instructions, 
-        model="gpt-4o",
+        model="gpt-4o-mini",
         temperature=0
     )
 
@@ -154,7 +154,7 @@ def generate_response(instructions, content):
     assistant = client.beta.assistants.create(
         name="Greek Translator",
         instructions=instructions, 
-        model="gpt-4o",
+        model="gpt-4o-mini",
         temperature=0
     )
     thread = client.beta.threads.create(
@@ -195,10 +195,10 @@ def helloworld():
 def generate():
     try:
         data = request.get_json()
-        content = data.get('content')
+        content = data.get('sentence')
 
         if not content:
-            return jsonify({'error': 'Content is required.'}), 400
+            return jsonify({'error': 'sentence is required.'}), 400
 
         instructions = get_instructions()
         result = generate_response(instructions=instructions, content=content)
@@ -224,6 +224,9 @@ def generate():
 if __name__ == '__main__':
     # app.run(debug=True)
     # app.run(host="0.0.0.0", port=5000)
+    
+    # print(generate_response(instructions=get_instructions(), 
+    #                         content="Ἀηδόνι συνεβούλευε χελιδὼν τοῖς ἀνθρώποις εἶναι ὁμόροφον καὶ σύνοικον ὡς αὐτή. "))
     app.run()
 
 
